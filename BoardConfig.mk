@@ -51,6 +51,9 @@ TARGET_KERNEL_CONFIG := davinci_defconfig
 TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KERNEL_CLANG_VERSION := proton
 
+# MiuiCamera
+include vendor/miuicamera/common/BoardConfigVendor.mk
+
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 134217728
 BOARD_DTBOIMG_PARTITION_SIZE := 33554432

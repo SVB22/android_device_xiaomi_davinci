@@ -23,6 +23,9 @@ $(call inherit-product, device/xiaomi/sm6150-common/sm6150.mk)
 # Call the proprietary setup
 $(call inherit-product, vendor/xiaomi/davinci/davinci-vendor.mk)
 
+# Inherit from MiuiCamera    vendor
+$(call inherit-product, vendor/miuicamera/common/common-vendor.mk)
+
 # Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_platform_info_intcodec.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info_intcodec.xml \
