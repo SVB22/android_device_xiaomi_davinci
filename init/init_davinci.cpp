@@ -27,13 +27,22 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <fstream>
+#include <unistd.h>
 #include <vector>
 
 #include <android-base/properties.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
+#include "property_service.h"
+#include "vendor_init.h"
+
 using android::base::GetProperty;
+
+int property_set(const char *key, const char *value) {
+    return __system_property_set(key, value);
+}
 
 std::vector<std::string> ro_props_default_source_order = {
     "",
@@ -76,7 +85,7 @@ void vendor_load_properties() {
     std::string region;
     std::string hardware_revision;
     region = GetProperty("ro.boot.hwc", "GLOBAL");
-    hardware_revision = GetProperty("ro.boot.hwversion", "UNKNOWN");
+    hardware_revision = GetProperty("ro.boot.hwversion", "5.19.0");
 
     std::string model;
     std::string device;
@@ -87,27 +96,25 @@ void vendor_load_properties() {
     if (region == "GLOBAL") {
         model = "Mi 9T";
         device = "davinci";
-        fingerprint = "Xiaomi/davinci/davinci:10/QKQ1.190825.002/V12.0.3.0.QFJMIXM:user/release-keys";
-        description = "davinci-user 10 QKQ1.190825.002 V12.0.3.0.QFJMIXM release-keys";
+        fingerprint = "Xiaomi/davinci/davinci:10/QKQ1.190825.002/V12.0.1.0.QFJMIXM:user/release-keys";
+        description = "davinci-user 10 QKQ1.190825.002 V12.0.1.0.QFJMIXM release-keys";
         mod_device = "davinci_global";
     } else if (region == "CN") {
         model = "Redmi K20";
         device = "davinci";
-        fingerprint = "Xiaomi/davinci/davinci:10/QKQ1.190825.002/V12.0.3.0.QFJCNXM:user/release-keys";
-        description = "davinci-user 10 QKQ1.190825.002 V12.0.3.0.QFJCNXM release-keys";
+        fingerprint = "Xiaomi/davinci/davinci:10/QKQ1.190825.002/V11.0.6.0.QFJCNXM:user/release-keys";
+        description = "davinci-user 10 QKQ1.190825.002 V11.0.6.0.QFJCNXM release-keys";
     } else if (region == "INDIA") {
         model = "Redmi K20";
         device = "davinciin";
-        fingerprint = "Xiaomi/davinciin/davinciin:10/QKQ1.190825.002/V12.0.3.0.QFJINXM:user/release-keys";
-        description = "davinciin-user 10 QKQ1.190825.002 V12.0.3.0.QFJINXM release-keys";
+        fingerprint = "Xiaomi/davinciin/davinciin:10/QKQ1.190825.002/V11.0.3.0.QFJINXM:user/release-keys";
+        description = "davinciin-user 10 QKQ1.190825.002 V11.0.3.0.QFJINXM release-keys";
         mod_device = "davinciin_in_global";
     }
 
     // SafetyNet workaround
     property_override("ro.boot.verifiedbootstate", "green");
-    fingerprint = "Xiaomi/dipper/dipper:8.1.0/OPM1.171019.011/V9.5.5.0.OEAMIFA:user/release-keys";
-    description = "dipper-user 8.1.0 OPM1.171019.011 V9.5.5.0.OEAMIFA release-keys";
-
+    fingerprint = "google/sunfish/sunfish:11/RQ1A.201205.008/6943376:user/release-keys";
     set_ro_build_prop("fingerprint", fingerprint);
     set_ro_product_prop("device", device);
     set_ro_product_prop("model", model);

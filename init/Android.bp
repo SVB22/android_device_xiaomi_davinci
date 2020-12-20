@@ -13,13 +13,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-
 cc_library_static {
     name: "libinit_davinci",
     srcs: ["init_davinci.cpp"],
     recovery_available: true,
+    whole_static_libs: ["libbase"],
     include_dirs: [
-        "system/core/init",
+        "system/core/base/include",
+        "system/core/init"
     ],
-    shared_libs: ["libbase"],
+    shared_libs: [
+        "libbase",
+    ],
 }
