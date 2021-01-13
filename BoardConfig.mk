@@ -16,6 +16,13 @@
 
 DEVICE_PATH := device/xiaomi/davinci
 
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_USES_NETWORK := true
+BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
+BUILD_BROKEN_PREBUILT_ELF_FILES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+LOCAL_CHECK_ELF_FILES := false
+
 # Inherit from sm6150-common
 include device/xiaomi/sm6150-common/BoardConfigCommon.mk
 
@@ -41,6 +48,8 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_davinci
 
 # Kernel
 TARGET_KERNEL_CONFIG := davinci_defconfig
+TARGET_KERNEL_CLANG_COMPILE := true
+TARGET_KERNEL_CLANG_VERSION := proton
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 134217728
