@@ -50,4 +50,9 @@
     <!-- Boolean indicating if current platform supports HFP inband ringing -->
     <bool name="config_bluetooth_hfp_inband_ringing_support">true</bool>
 
+    <!-- Whether or not to skip the initial brightness ramps when the display transitions to
+     STATE_ON. Setting this to true will skip the brightness ramp to the last stored active
+     brightness value and will repeat for the following ramp if autobrightness is enabled. -->
+     <bool name="config_skipScreenOnBrightnessRamp">true</bool>
+
 </resources>
