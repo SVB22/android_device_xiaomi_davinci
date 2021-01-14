@@ -91,3 +91,10 @@ PRODUCT_PACKAGES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
+
+# Updater
+PRODUCT_PACKAGES += \
+    Updater
+
+# FOD animations
+TARGET_WANTS_FOD_ANIMATIONS := true
