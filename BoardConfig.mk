@@ -66,6 +66,7 @@ TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 # Security patch level
 VENDOR_SECURITY_PATCH := 2020-11-01
 
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 
 # Shims
